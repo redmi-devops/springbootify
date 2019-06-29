@@ -1,0 +1,32 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'io.spring.dependency-management' version "1.0.8.RELEASE"
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'com.palantir.docker' version '0.22.1'
+    id 'com.palantir.docker-run' version '0.22.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 'org.springframework.boot:spring-boot-devtools'
+}
+
+docker {
+    name 'springbootify:0.1.0'
+    files "$buildDir/libs/springbootify.war"
+    files "tomcat-users.xml"
+}
+
+dockerRun {
+    name 'springbootify'
+    image 'springbootify:0.1.0'
+    ports '8080:8080'
+    clean true
+    daemonize false
+}
