@@ -15,3 +15,7 @@ be accessed `http://localhost:8080/app/help`
 To run in Docker Tomcat container
 
 `./gradlew build docker dockerRun`
+
+To tear down the docker container:
+
+`./gradlew dockerStop`
