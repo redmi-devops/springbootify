@@ -5,11 +5,14 @@ plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'com.palantir.docker' version '0.22.1'
     id 'com.palantir.docker-run' version '0.22.1'
+    id 'pl.allegro.tech.build.axion-release' version '1.10.1'
 }
 
 repositories {
     mavenCentral()
 }
+
+project.version = scmVersion.version
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
@@ -18,9 +21,9 @@ dependencies {
 }
 
 docker {
-    name 'springbootify:0.1.0'
-    files "$buildDir/libs/springbootify.war"
-    files "tomcat-users.xml"
+    name "${project.name}:${project.version}"
+    files "$buildDir/libs/${project.name}-${project.version}.war"
+    buildArgs ["JAR_FILE", "${project.name}-${project.version}.war"]
 }
 
 dockerRun {
