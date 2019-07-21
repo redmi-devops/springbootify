@@ -21,8 +21,9 @@ dependencies {
 }
 
 docker {
-    name "${project.name}:0.1.0"
-    files "$buildDir/libs/${project.name}.war"
+    name "${project.name}:${project.version}"
+    files "$buildDir/libs/${project.name}-${project.version}.war"
+    buildArgs ["JAR_FILE", "${project.name}-${project.version}.war"]
 }
 
 dockerRun {

@@ -1,3 +1,4 @@
 FROM openjdk:12-jdk-alpine
-COPY springbootify.war /app.war
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.war"]
