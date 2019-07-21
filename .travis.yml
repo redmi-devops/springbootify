@@ -6,4 +6,4 @@ services:
 jdk: oraclejdk11
 
 script:
-  - ./gradlew build
+  - ./gradlew build docker
