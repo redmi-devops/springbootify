@@ -18,9 +18,8 @@ dependencies {
 }
 
 docker {
-    name 'springbootify:0.1.0'
-    files "$buildDir/libs/springbootify.war"
-    files "tomcat-users.xml"
+    name "${project.name}:0.1.0"
+    files "$buildDir/libs/${project.name}.war"
 }
 
 dockerRun {
