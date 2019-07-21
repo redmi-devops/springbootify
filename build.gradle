@@ -1,5 +1,4 @@
 plugins {
-    id 'war'
     id 'java'
     id 'io.spring.dependency-management' version "1.0.8.RELEASE"
     id 'org.springframework.boot' version '2.1.6.RELEASE'
@@ -17,19 +16,18 @@ project.version = scmVersion.version
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     compile 'org.springframework.boot:spring-boot-devtools'
 }
 
 docker {
     name "${project.name}:${project.version}"
-    files "$buildDir/libs/${project.name}-${project.version}.war"
-    buildArgs ["JAR_FILE", "${project.name}-${project.version}.war"]
+    files "$buildDir/libs/${project.name}-${project.version}.jar"
+    buildArgs([JAR_FILE: "${project.name}-${project.version}.jar"])
 }
 
 dockerRun {
-    name 'springbootify'
-    image 'springbootify:0.1.0'
+    name "${project.name}"
+    image "${project.name}:${project.version}"
     ports '8080:8080'
     clean true
     daemonize false
