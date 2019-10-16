@@ -16,7 +16,10 @@ project.version = scmVersion.version
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'io.micrometer:micrometer-registry-prometheus:1.2.1'
+
 }
 
 docker {
