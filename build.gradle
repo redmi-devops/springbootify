@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'io.spring.dependency-management' version "1.0.8.RELEASE"
-    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'com.palantir.docker' version '0.22.1'
     id 'com.palantir.docker-run' version '0.22.1'
     id 'pl.allegro.tech.build.axion-release' version '1.10.1'
@@ -9,16 +9,17 @@ plugins {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 scmVersion.repository.customUsername =  project.findProperty("GITHUB_TOKEN") ?: null
 project.version = scmVersion.version
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.boot:spring-boot-devtools'
-    compile 'io.micrometer:micrometer-registry-prometheus:1.2.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.2.1'
 
 }
 
